@@ -51,8 +51,18 @@ def checkShodanAPIKey(apiKey):
     cprint('[🚫] Error: {}. Please, try again.'.format(errorMessage), 'red', attrs=['bold'])
     exit()
 
-def findShoddanAPIKeyOnGit():
-  cprint('[🚫] Functionality coming soon. Stay tuned!', 'green', attrs=['bold'])
+def findShoddanAPIKeyOnGit(boolean):
+  if boolean == True:
+    cprint('[👻] Here is a list of GitHub dorks to help you find a Shodan API Key', 'green', attrs=['bold'])
+    print('[+] \033[1;32m Dork 1:\033[1;m shodan_api_key language:python')
+    print('[+] \033[1;32m Dork 2:\033[1;m shodan_api_key language:php')
+    print('[+] \033[1;32m Dork 3:\033[1;m shodan_api_key language:javascript')
+    print('[+] \033[1;32m Dork 4:\033[1;m shodan_key language:python')
+    print('[+] \033[1;32m Dork 5:\033[1;m shodan_key language:php')
+    print('[+] \033[1;32m Dork 6:\033[1;m shodan_key language:javascript')
+    cprint('[👀] Insert the following dorks in the GitHub search bar, select the "Code" tab, and look carefully for Shodan API keys in the code.', 'green', attrs=['bold'])
+    cprint('[✏️] You can also modify the dorks by changing the language for example to get more results.', 'green', attrs=['bold'])
+  print('\n[👹] See you soon for a new adventure!\n')  
   exit()
 
 def shodanSearch(apiKey, params):
@@ -148,13 +158,13 @@ def main():
 
   answers = prompt(initQuestions, style=promptStyle)
 
-  if answers.get('findNewKey') == True:
-    shodanAPIKey = findShoddanAPIKeyOnGit()
+  if answers.get('findNewKey') == False or answers.get('findNewKey') == True:
+    findShoddanAPIKeyOnGit(answers.get('findNewKey'))
 
-  if answers.get('usePreviousKey') == True: 
+  if len(answers) and answers.get('usePreviousKey') == True: 
     shodanAPIKey = checkShodanAPIKey(shodanAPIKey)
   
-  if answers.get('haveOwnKey') == True:
+  if len(answers) and answers.get('haveOwnKey') == True:
     shodanAPIKey = checkShodanAPIKey(answers.get('useNewKey'))
 
   if len(answers) > 0:   
@@ -173,7 +183,7 @@ def main():
   else:
     cprint('[😓] No result found. Please try again using another keywords or dorks combo.', 'yellow', attrs=['bold'])   
   
-  print('[👹] See you soon for a new adventure!\n')
+  print('\n[👹] See you soon for a new adventure!\n')
 
 
 initQuestions = [
@@ -207,7 +217,7 @@ initQuestions = [
         'type': 'confirm',
         'name': 'findNewKey',
         'qmark': '[❓]',
-        'message': 'I can try to find a valid API key for free using GitHub dork. Are you interested?',
+        'message': 'You can try to find a valid API key for free using GitHub dork. Are you interested?',
         'default': False,
         'when': lambda answers: answers.get('haveOwnKey') == False,
     }
@@ -231,7 +241,7 @@ searchQuestions = [
     },
     {
         'type': 'checkbox',
-        'qmark': '[👻]',
+        'qmark': '[🤖]',
         'message': 'Dorks selection',
         'name': 'dorks',
         'choices': [ 
