@@ -4,7 +4,7 @@ Shodan Quest is a powerful and useful tool that can be used to search for sensit
 
 ![Shodan Quest Logo](https://i.ibb.co/Y361tXX/Shodan-quest.png)
 
-Shodan Quest is not a perfect tool at the moment but provides basic functionalities to automate the search on on Shodan based on your query or using the provided dorks selection.
+Shodan Quest is not a perfect tool at the moment but provides basic functionalities to automate the search on Shodan based on your query or using the provided dorks selection.
 There is also the possibility to save the result of a query in `.CSV` or `.TXT` (at moment) once the research completed.
 
 ### Demo
