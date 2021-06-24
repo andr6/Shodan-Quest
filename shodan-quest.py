@@ -351,6 +351,9 @@ searchQuestions = [
             },
             Separator('--- Webcams ---'),
             {
+                'name': 'title:camera'
+            },
+            {
                 'name': 'Server: SQ-WEBCAM'
             },
             {
