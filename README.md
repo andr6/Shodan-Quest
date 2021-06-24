@@ -24,7 +24,7 @@ pip install -r requirements.txt
 python3 shodan-quest.py
 ```
 Then let yourself be guided!
-![Shodan Quest Cli](https://i.ibb.co/0f5kT3Z/shodan-quest.png)
+![Shodan Quest Cli](https://i.ibb.co/Bg3ckHk/shodan-quest-demo.png)
 
 ### Contribution
 Please consider contributing dorks that can reveal potentially sensitive information on Shodan.
