@@ -35,9 +35,9 @@ def banner():
 Author: Naqwada                      v1.0.2
 RuptureFarms 1029
 
-          FOR EDUCATIONAL PURPOSE ONLY.   
+        FOR EDUCATIONAL PURPOSE ONLY.   
   """
-  txtColors = ['red', 'yellow', 'green', 'blue', 'cyan']
+  txtColors = ['cyan']
   return cprint(shodanQuest, random.choice(txtColors), attrs=['bold'])
 
 def getSavedAPIKey():
@@ -55,7 +55,7 @@ def checkShodanAPIKey(apiKey):
     api.search('0_0')
     cprint('[✔️] API Key Authentication: SUCCESS..!', 'green', attrs=['bold'])
     saveAPIKey(apiKey)
-    cprint('[📑] The API Key has been saved.', 'blue', attrs=['bold'])
+    cprint('[📑] The API Key has been saved.\n', 'blue', attrs=['bold'])
     return apiKey
   except shodan.APIError as errorMessage:
     cprint('[🚫] Error: {}. Please, try again.'.format(errorMessage), 'red', attrs=['bold'])
@@ -180,9 +180,13 @@ def main():
   if len(answers) > 0:   
     answers = prompt(searchQuestions, style=promptStyle)
 
-  if len(answers) and len(answers['keywords']) > 0 or len(answers['dorks']) > 0:
-    questName = answers['keywords']
-    results = shodanSearch(shodanAPIKey, answers)
+  if len(answers):
+    if len(answers['keywords']) > 0 or len(answers['dorks']) > 0:
+      questName = answers['keywords']
+      results = shodanSearch(shodanAPIKey, answers)
+  else:
+    print('\n[👹] See you soon for a new adventure!\n')
+    exit()
 
   if len(results) > 0:
     answers = prompt(saveResultsQuestion, style=promptStyle) 
