@@ -79,10 +79,6 @@ def shodanSearch(apiKey, params):
   try:
     api = shodan.Shodan(apiKey)
 
-    if params['needDorks'] == True:
-      for dork in params['dorks']:
-        params['keywords'] += ' {} '.format(dork)
-    print(params['keywords'])
     results = []
     counter = 1
     for response in api.search_cursor(params['keywords']):
@@ -164,7 +160,7 @@ def main():
   if len(shodanAPIKey) == 0: 
     print('[🙂] Hi, welcome to Shodan Quest!\n')
   else:
-    print('[🤠] Welcome back, ready for a new quest?!\n')
+    print('[🤠]  Welcome back, ready for a new quest?!\n')
 
   answers = prompt(initQuestions, style=promptStyle)
 
@@ -181,7 +177,7 @@ def main():
     answers = prompt(searchQuestions, style=promptStyle)
 
   if len(answers):
-    if len(answers['keywords']) > 0 or len(answers['dorks']) > 0:
+    if len(answers['keywords']) > 0:
       questName = answers['keywords']
       results = shodanSearch(shodanAPIKey, answers)
   else:
@@ -219,7 +215,7 @@ initQuestions = [
         'when': lambda answers: answers.get('usePreviousKey') == False or len(getSavedAPIKey()) < 30,
     },
     {
-        'type': 'input',
+        'type': 'password',
         'name': 'useNewKey',
         'message': 'Enter your Shodan API key:',
         'qmark': '[🔑]',
@@ -239,27 +235,29 @@ initQuestions = [
 
 searchQuestions = [
     {
+        'type': 'list',
+        'name': 'queryFormat',
+        'qmark': '[❓]',
+        'message': 'What type of request do you need?',
+        'choices': ['I want to make my own request.', 'I want to use Shodan dorks.'],
+        'filter': lambda val: val.lower(),
+    },
+    {
         'type': 'input',
         'name': 'keywords',
         'qmark': '[💬]',
         'message': 'Enter what you are looking for:',
-        # 'validate': lambda answer: 'Are you really looking for something?' \
-        #     if len(answer) == 0 else True
+        'when': lambda answers: answers.get('queryFormat') == 'i want to make my own request.',
+        'validate': lambda answer: 'Are you really looking for something?' \
+            if len(answer) == 0 else True
     },
     {
-        'type': 'confirm',
-        'name': 'needDorks',
-        'qmark': '[❓]',
-        'message': 'Do you need to combine your query with Shodan dorks?',
-        'default': False
-    },
-    {
-        'type': 'checkbox',
+        'type': 'list',
         'qmark': '[🤖]',
         'message': 'Dorks selection',
-        'name': 'dorks',
+        'name': 'keywords',
         'choices': [ 
-            Separator('= Databases ='),
+            Separator(' --- Databases ---'),
             {
                 'name': '"MongoDB Server Information" port:27017 -authentication',
             },
@@ -273,9 +271,9 @@ searchQuestions = [
                 'name': 'port:"9200" all:"elastic indices"'
             },
             {
-                'name': 'port:5432 PostgreSQL'
+                'name': 'port:5432 PostgreSQL\n'
             },
-            Separator('= Exposed ports ='),
+            Separator('--- Exposed ports ---'),
             {
                 'name': 'proftpd port:21',
             },
@@ -310,17 +308,17 @@ searchQuestions = [
                 'name': '"dnsmasq-pi-hole" "Recursion: enabled"'
             },
             {
-                'name': 'http.favicon.hash:"1485257654" "200"'
+                'name': 'http.favicon.hash:"1485257654" "200"\n'
             },
-            Separator('= DNS servers ='),
+            Separator('--- DNS servers ---'),
             {
-                'name': '"port: 53" Recursion: Enabled'
+                'name': '"port: 53" Recursion: Enabled\n'
             },
-            Separator('= Network infrastructure ='),
+            Separator('--- Network infrastructure ---'),
             {
-                'name': 'port:8291 os:"MikroTik RouterOS 6.45.9"'
+                'name': 'port:8291 os:"MikroTik RouterOS 6.45.9"\n'
             },
-            Separator('= Web servers ='),
+            Separator('--- Web servers ---'),
             {
                 'name': 'product:"Apache httpd" port:"80"'
             },
@@ -331,13 +329,13 @@ searchQuestions = [
                 'name': 'product:"nginx"',
             },
             {
-                'name': '"port: 8080" product:"nginx"'
+                'name': '"port: 8080" product:"nginx"\n'
             },
-            Separator('= North Korea Server ='),
+            Separator('--- North Korea Server ---'),
             {
-                'name': 'net:175.45.176.0/22,210.52.109.0/24,77.94.35.0/24'
+                'name': 'net:175.45.176.0/22,210.52.109.0/24,77.94.35.0/24\n'
             },
-            Separator('= Operating systems ='),
+            Separator('--- Operating systems ---'),
             {
                 'name': 'os:"windows 7"'
             },
@@ -345,13 +343,13 @@ searchQuestions = [
                 'name': 'os:"Windows 10 Home 19041"',
             },
             {
-                'name': 'os:"Linux"'
+                'name': 'os:"Linux"\n'
             },
-            Separator('= Android Root Bridge ='),
+            Separator('--- Android Root Bridge ---'),
             {
-                'name': '"Android Debug Bridge" "Device" port:5555'
+                'name': '"Android Debug Bridge" "Device" port:5555\n'
             },
-            Separator('= Webcams ='),
+            Separator('--- Webcams ---'),
             {
                 'name': 'Server: SQ-WEBCAM'
             },
@@ -368,9 +366,9 @@ searchQuestions = [
                 'name': '"Server: IP Webcam Server" "200 OK"'
             },
             {
-                'name': '("webcam 7" OR "webcamXP") http.component:"mootools" -401'
+                'name': '("webcam 7" OR "webcamXP") http.component:"mootools" -401\n'
             },
-            Separator('= Home Devices ='),
+            Separator('--- Home Devices ---'),
             {
                 'name': '"Server: AV_Receiver" "HTTP/1.1 406"'
             },
@@ -381,16 +379,16 @@ searchQuestions = [
                 'name': '"Chromecast:" port:8008',
             },
             {
-                'name': '"Model: PYNG-HUB"',
+                'name': '"Model: PYNG-HUB"\n',
             },
-            Separator('= Remote Desktop ='),
+            Separator('--- Remote Desktop ---'),
             {
                 'name': 'remote desktop "port:3389"'
             },
             {
-                'name': '"authentication disabled" "RFB 003.008"',
+                'name': '"authentication disabled" "RFB 003.008"\n',
             },
-            Separator('= NAS accesses ='),
+            Separator('--- NAS accesses ---'),
             {
                 'name': '"Authentication: disabled" port:445'
             },
@@ -407,9 +405,9 @@ searchQuestions = [
                 'name': 'Redirecting sencha port:9000'
             },
             {
-                'name': '"Authentication: disabled" port:445'
+                'name': '"Authentication: disabled" port:445\n'
             },
-            Separator('= Printers and copiers ='),
+            Separator('--- Printers and copiers ---'),
             {
                 'name': '"Serial Number:" "Built:" "Server: HP HTTP"'
             },
@@ -429,9 +427,9 @@ searchQuestions = [
                 'name': '"Server: KS_HTTP" "200 OK"'
             },
             {
-                'name': '"Server: CANON HTTP Server"'
+                'name': '"Server: CANON HTTP Server"\n'
             },
-            Separator('= Industrial Control Systems ='),
+            Separator('--- Industrial Control Systems ---'),
             {
                 'name': '"Server: Prismview Player"'
             },
@@ -490,8 +488,8 @@ searchQuestions = [
                 'name': '"HID VertX" port:4070'
             }
         ],
-        'when': lambda answers: answers.get('needDorks') == True,
-        'validate': lambda answer: 'You must choose at least one Shodan dork.' \
+        'when': lambda answers: answers.get('queryFormat') == 'i want to use shodan dorks.',
+        'validate': lambda answer: 'You must choose at least one topping.' \
             if len(answer) == 0 else True
     }
 ]
@@ -518,11 +516,11 @@ saveResultsQuestion = [
 promptStyle = style_from_dict({
     Token.Separator: '#b41e44 bold',
     Token.QuestionMark: '#4b7bec',
-    Token.Selected: '#2ecc71',
+    Token.Selected: '#b41e44 bold',
     Token.Pointer: '#45aaf2 bold',
     Token.Instruction: '', 
-    Token.Answer: '#3498db bold',
-    Token.Question: '#fff bold',
+    Token.Answer: '#fff bold',
+    Token.Question: '#3498db bold',
 })
 
 if __name__ == "__main__":
