@@ -488,9 +488,7 @@ searchQuestions = [
                 'name': '"HID VertX" port:4070'
             }
         ],
-        'when': lambda answers: answers.get('queryFormat') == 'i want to use shodan dorks.',
-        'validate': lambda answer: 'You must choose at least one topping.' \
-            if len(answer) == 0 else True
+        'when': lambda answers: answers.get('queryFormat') == 'i want to use shodan dorks.'
     }
 ]
 
