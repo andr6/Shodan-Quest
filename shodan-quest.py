@@ -37,7 +37,7 @@ RuptureFarms 1029
 
         FOR EDUCATIONAL PURPOSE ONLY.   
   """
-  txtColors = ['cyan']
+  txtColors = ['red', 'green', 'cyan', 'yellow', 'blue', 'magenta']
   return cprint(shodanQuest, random.choice(txtColors), attrs=['bold'])
 
 def getSavedAPIKey():
