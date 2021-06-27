@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Author:   Samy Younsi (RuptureFarm 1029) <samyyounsi@hotmail.fr>
+# Author:   Naqwada (RuptureFarm 1029) <naqwada@protonmail.com>
 # License:  MIT License (http://www.opensource.org/licenses/mit-license.php)
-# Docs:     https://github.com/ShinoNuma/Shodan-Quest
-# Website:  http://samy.ga
+# Docs:     https://github.com/Naqwada/Shodan-Quest
+# Website:  http://samy.link/
 # Linkedin: https://www.linkedin.com/in/samy-younsi/
 # Note:     FOR EDUCATIONAL PURPOSE ONLY.
 
@@ -94,7 +94,6 @@ def shodanSearch(apiKey, params):
       results.append(response) 
       time.sleep(0.5)
       print('\n')
-
 
       counter += 1
       if counter >= 999:
