@@ -7,8 +7,8 @@ Shodan Quest is a powerful and useful tool that can be used to search for sensit
 Shodan Quest is not a perfect tool at the moment but provides basic functionalities to automate the search on Shodan based on your query or using the provided dorks selection.
 There is also the possibility to save the result of a query in `.CSV` or `.TXT` (at moment) once the research completed.
 
-### Demo
-https://webmshare.com/play/ZoXgG
+### Proof Of Concept
+[![Video PoC Shodan Quest](https://i.ibb.co/7gXHL9q/500px-youtube-social-play.png)](https://www.youtube.com/watch?v=-UWjLwERZxQ)
 
 ### Requirement
 * Python 3 (Tested with Python 3.8.5)
