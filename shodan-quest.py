@@ -317,6 +317,13 @@ searchQuestions = [
             {
                 'name': 'port:8291 os:"MikroTik RouterOS 6.45.9"\n'
             },
+            Separator('--- Crypto Trading Bot ---'),
+            {
+                'name': '"octobot"'
+            },
+            {
+                'name': 'title:"Gekko"'
+            },
             Separator('--- Web servers ---'),
             {
                 'name': 'product:"Apache httpd" port:"80"'
@@ -349,9 +356,6 @@ searchQuestions = [
                 'name': '"Android Debug Bridge" "Device" port:5555\n'
             },
             Separator('--- Webcams ---'),
-            {
-                'name': 'title:camera'
-            },
             {
                 'name': 'Server: SQ-WEBCAM'
             },
@@ -430,6 +434,28 @@ searchQuestions = [
             },
             {
                 'name': '"Server: CANON HTTP Server"\n'
+            },
+            Separator('--- Video Surveillance ---'),
+            {
+                'name': 'title:"Sony Network Camera"'
+            },
+            {
+                'name': 'title:"network camera vb-"'
+            },
+            {
+                'name': 'title:"INSTAR Full-HD IP-Camera"'
+            },
+            {
+                'name': 'title:"VideoIQ Camera Login"'
+            },
+            {
+                'name': 'title:"Milesight Network Camera"'
+            },
+            {
+                'name': 'title:"Alphafinity Network Camera"'
+            },
+            {
+                'name': 'title:"IP Network Camera"'
             },
             Separator('--- Industrial Control Systems ---'),
             {

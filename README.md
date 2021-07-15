@@ -34,6 +34,8 @@ I am not categorizing at the moment. Instead, I am going to just the list of dor
 
  Dork                                           | Description
 ------------------------------------------------|--------------------------------------------------------------------------
+"octobot" | Crypto Currency trading bot.
+title:"Gekko" | Gekko UI Crypto Currency trading bot.
 "MongoDB Server Information" port:27017 -authentication | MongoDB database servers open authentication.
 "Set-Cookie: mongo-express=" "200 OK" |  Mongo Express Web GUI.
 mysql port:"3306" | MySQL-powered databases.
@@ -104,7 +106,13 @@ http.title:"Nordex Control" "Windows 2000 5.0 x86" "Jetty/3.1 (JSP 1.1; Servlet 
 "Server: EIG Embedded Web Server" "200 Document follows" | GaugeTech Electricity Meters.
 "Siemens, SIMATIC" port:161 | Siemens Industrial Automation.
 "Server: Microsoft-WinCE" "Content-Length: 12581" | Siemens HVAC Controllers.
-"HID VertX" port:4070 | Door / Lock Access Controllers.
+title:"Sony Network Camera" | Sony Video Surveillance Camera.
+title:"network camera vb-" | Canon Video Surveillance Camera.
+title:"INSTAR Full-HD IP-Camera" | INSTAR Video Surveillance Camera.
+title:"VideoIQ Camera Login" | VideoIQ Video Surveillance Camera.
+title:"Milesight Network Camera" | Milesight Video Surveillance Camera.
+title:"Alphafinity Network Camera" | Alphafinity Video Surveillance Camera.
+title:"IP Network Camera" | Panasonic Video Surveillance Camera.
 
 ### Note
 FOR EDUCATIONAL PURPOSE ONLY.
